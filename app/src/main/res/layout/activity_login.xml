@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/id_login_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/login_logo" />
+
+        <EditText
+            android:id="@+id/id_login_username"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_login_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:hint="Username"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/id_login_password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_login_username"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/id_login_loginbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_login_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:textSize="20sp"
+            android:text="Login" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_login_forgotpassword"
+            android:textSize="15sp"
+            android:text="Forgot Password?"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_login_loginbtn" />
+
+
+        <TextView
+            android:id="@+id/id_login_newuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_login_forgotpassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="New User?"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
