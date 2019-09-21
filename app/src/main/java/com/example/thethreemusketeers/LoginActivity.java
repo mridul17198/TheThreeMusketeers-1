@@ -47,15 +47,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
             startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
         }
-        forgotpassword=(TextView)findViewById(R.id.id_login_forgotpassword);
-
     }
 
     private void setupListners()
     {
         newuser.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
-        forgotpassword.setOnClickListener(this);
     }
 
 
@@ -64,7 +61,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     {
         if(view==newuser) { startActivity(new Intent(LoginActivity.this,RegisterationActivity.class)); }
         else if(view==loginbtn)userLogin();
-        else if(view==forgotpassword) { startActivity((new Intent(LoginActivity.this,ResetActivity.class)));}
     }
 
     private void userLogin(){

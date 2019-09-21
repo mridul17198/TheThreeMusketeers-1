@@ -52,20 +52,10 @@
             android:text="Login" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_login_forgotpassword"
-            android:textSize="15sp"
-            android:text="Forgot Password?"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/id_login_loginbtn" />
-
-
-        <TextView
             android:id="@+id/id_login_newuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/id_login_forgotpassword"
+            android:layout_below="@id/id_login_loginbtn"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="New User?"

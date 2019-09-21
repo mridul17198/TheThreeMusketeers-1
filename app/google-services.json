@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "827912087419",
+    "firebase_url": "https://thethreemusketeers-5eb1e.firebaseio.com",
+    "project_id": "thethreemusketeers-5eb1e",
+    "storage_bucket": "thethreemusketeers-5eb1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827912087419:android:8563dc3e9e2376ebcdffde",
+        "android_client_info": {
+          "package_name": "com.example.thethreemusketeers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827912087419-ci0mm8u9dvq72v7jdqgdhtc522vorr49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thethreemusketeers",
+            "certificate_hash": "49b3bc98fa3bd6e18cc83ce3d644aa4a7de6b8f3"
+          }
+        },
+        {
+          "client_id": "827912087419-1h0kubpmkujdk00q6s0q2jvb87mpuecv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE9dyBzNAPSPQOXFPxneAI2fSK3H-2SRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827912087419-1h0kubpmkujdk00q6s0q2jvb87mpuecv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

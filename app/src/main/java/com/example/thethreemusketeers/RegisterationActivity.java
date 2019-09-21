@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +22,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -31,6 +39,10 @@ public class RegisterationActivity extends AppCompatActivity implements View.OnC
     private TextView loginuser;
     private FirebaseAuth firebaseauth;
 
+    AutoCompleteTextView address;
+    ArrayList<String> locations_arr;
+    DatabaseReference databaseReference;
+    String String_mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +54,29 @@ public class RegisterationActivity extends AppCompatActivity implements View.OnC
 
     private void setupUI() {
 
+        firebaseauth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference("User_Registeration_Information");
         email=(EditText)findViewById(R.id.id_register_email);
         password=(EditText)findViewById(R.id.id_register_password);
         regbtn=(Button)findViewById(R.id.id_register_btn);
         loginuser=(TextView)findViewById(R.id.id_register_loginuser);
         mobile=(EditText)findViewById(R.id.id_register_mobilenum);
         verify_mobile=(Button)findViewById(R.id.id_register_sendotpbtn);
+
+        address=(AutoCompleteTextView)findViewById(R.id.id_register_address);
+
+        locations_arr=new ArrayList<String>();
+        try
+        {
+            BufferedReader reader=new BufferedReader(new InputStreamReader(getAssets().open("locations_file")));
+            String alocation;
+            while((alocation=reader.readLine())!=null)locations_arr.add(alocation);
+        }
+        catch (Exception e)
+        { Toast.makeText(RegisterationActivity.this,e.getMessage().toString(),Toast.LENGTH_SHORT).show(); }
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,locations_arr);
+        address.setAdapter(adapter);
+        address.setThreshold(2);
 
         email.setEnabled(false);
         password.setEnabled(false);
@@ -67,24 +96,27 @@ public class RegisterationActivity extends AppCompatActivity implements View.OnC
 
         if (view == regbtn) {
 
-            String String_email = email.getText().toString().trim();
-            String String_password = password.getText().toString().trim();
+            final String String_email = email.getText().toString().trim();
+            String String_password =password.getText().toString().trim();
+            final String String_location =address.getText().toString().trim();
 
-            if (validateEmailPassword(String_email, String_password)) {
+
+            if (validateEmailPassword(String_email, String_password) && validateaddress(String_location)) {
 
                 firebaseauth.createUserWithEmailAndPassword(String_email, String_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             firebaseauth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if(task.isSuccessful()) {
-                                        Toast.makeText(RegisterationActivity.this, "Please Check Your Email For Verification.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterationActivity.this, "Please Check Your Email For Verification.", Toast.LENGTH_SHORT).show();
+                                        database_user_registeration_information obj = new database_user_registeration_information(String_email,String_mobile,String_location);
+                                        databaseReference.child("user"+firebaseauth.getCurrentUser().getUid()).setValue(obj);
                                         firebaseauth.signOut();
-                                        finish();
+                                        Toast.makeText(RegisterationActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                         Intent intent=new Intent(RegisterationActivity.this,LoginActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -117,7 +149,7 @@ public class RegisterationActivity extends AppCompatActivity implements View.OnC
         }
         else if(view==verify_mobile)
         {
-            String String_mobile=mobile.getText().toString().trim();
+            String_mobile=mobile.getText().toString().trim();
             if(validateIndianmobilenumber(String_mobile))
             {
                 String_mobile="+91"+String_mobile;
@@ -186,6 +218,17 @@ public class RegisterationActivity extends AppCompatActivity implements View.OnC
         if(!check_mobile)
         {
             Toast.makeText(RegisterationActivity.this,"Enter Valid Mobile Number",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean validateaddress(String String_location){
+
+        int i;
+        for(i=0;i<locations_arr.size();i++)if(String_location.equals(locations_arr.get(i)))break;
+        if(i==locations_arr.size())
+        {
+            Toast.makeText(RegisterationActivity.this,"Choose Valid Address",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

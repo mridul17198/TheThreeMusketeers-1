@@ -76,15 +76,28 @@
             android:layout_marginTop="30dp"
             android:inputType="textPassword" />
 
+
+
+        <AutoCompleteTextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/id_register_password"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:hint="Choose Location"
+            android:textSize="10sp"
+            android:id="@+id/id_register_address"/>
+
         <Button
             android:id="@+id/id_register_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/id_register_password"
+            android:layout_below="@id/id_register_address"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="105dp"
             android:layout_marginTop="50dp"
-            android:text="Next"
+            android:text="Register"
             android:textSize="20sp" />
 
         <TextView
