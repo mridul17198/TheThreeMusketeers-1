@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(firebaseAuth.getCurrentUser()!=null && firebaseAuth.getCurrentUser().isEmailVerified())
         {
             finish();
-            //startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
+            startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
         }
         forgotpassword=(TextView)findViewById(R.id.id_login_forgotpassword);
 
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 "A-Z]{2,7}$";
 
         String passwordRegex = "((?=.*[a-z])" +
-                "(?=.*[@#$%_])" +             //"(?=.*\\d)"+"(?=.*[A-Z])"
+                "(?=.*[@#$%_])" +
                 ".{6,20})";
 
         Pattern email_pat = Pattern.compile(emailRegex);

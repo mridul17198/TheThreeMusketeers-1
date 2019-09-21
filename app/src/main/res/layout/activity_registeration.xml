@@ -6,4 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".RegisterationActivity">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_register_label"
+            android:textSize="30sp"
+            android:text="Registerion Details"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_register_label"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/id_register_linear_layout1"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="70dp">
+
+            <EditText
+                android:id="@+id/id_register_mobilenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter Mobile"
+                android:inputType="phone"
+                android:textSize="20sp" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_register_sendotpbtn"
+                android:layout_toRightOf="@id/id_register_mobilenum"
+                android:textSize="10sp"
+                android:text="Verify Mobile" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/id_register_email"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="105dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_register_linear_layout1"
+            android:layout_marginTop="30dp"
+            android:hint="Enter Email Address"
+            android:inputType="textEmailAddress" />
+
+
+
+
+        <EditText
+            android:id="@+id/id_register_password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Set Password"
+            android:textSize="20sp"
+            android:layout_marginLeft="105dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_register_email"
+            android:layout_marginTop="30dp"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/id_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_register_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="50dp"
+            android:text="Next"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_register_loginuser"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_register_btn"
+            android:layout_marginTop="50dp"
+            android:textSize="15sp"
+            android:text="Already Signed Up?"/>
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
